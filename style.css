@@ -1,0 +1,121 @@
+/* Estilos para o layout */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1b1b1bd2;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #e7e7d7;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+h1 {
+    text-align: center;
+    color: #4b6d92;
+}
+select,
+input[type="text"],
+button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #9e9e9e;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+button {
+    background-color: #4b6d92;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #2e30ac;
+}
+#definition {
+    margin-top: 20px;
+}
+#wordList {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+}
+#wordList ul {
+    list-style-type: none;
+    padding: 0;
+}
+#wordList ul li {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+#wordList ul li:hover {
+    transform: scale(1.05);
+}
+#wordList ul li:active {
+    transform: scale(0.95);
+}
+/* Cores específicas para cada dialeto */
+.nortista-color { background-color: #e57373; color: #fff; }
+.costa-norte-color { background-color: #81c784; color: #fff; }
+.nordestino-color { background-color: #ffb74d; color: #fff; }
+.recifense-color { background-color: #64b5f6; color: #fff; }
+.baiano-color { background-color: #fff176; color: #fff; }
+.sertanejo-color { background-color: #a1887f; color: #fff; }
+.brasiliense-color { background-color: #90a4ae; color: #fff; }
+.mineiro-color { background-color: #4db6ac; color: #fff; }
+.fluminense-color { background-color: #7986cb; color: #fff; }
+.carioca-color { background-color: #ff8a65; color: #fff; }
+.caipira-color { background-color: #dce775; color: #fff; }
+.paulistano-color { background-color: #ba68c8; color: #fff; }
+.sulista-color { background-color: #f06292; color: #fff; }
+.florianopolitano-color { background-color: #ce93d8; color: #fff; }
+.gaucho-color { background-color: #e57373; color: #fff; }
+.serra-amazonica-color { background-color: #4fc3f7; color: #fff; }
+.capixaba-color { background-color: #9e9d24; color: #fff; }
+.maranhense-color { background-color: #ffcc80; color: #fff; }
+.pernambucana-color { background-color: #26c6da; color: #fff; }
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+@media screen and (max-width: 600px) {
+    .container { padding: 10px; }
+}

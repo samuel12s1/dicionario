@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dicionário de Gírias</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Dicionário de Gírias</h1>
+        <select id="wordType" onchange="updateWordList()">
+            <option value="all">Todas as Regiões</option>
+            <option value="nortista">Nortista</option>
+            <option value="costa-norte">Costa Norte</option>
+            <option value="nordestino">Nordestino</option>
+            <option value="recifense">Recifense</option>
+            <option value="baiano">Baiano</option>
+            <option value="sertanejo">Sertanejo</option>
+            <option value="brasiliense">Brasiliense</option>
+            <option value="mineiro">Mineiro</option>
+            <option value="fluminense">Fluminense</option>
+            <option value="carioca">Carioca</option>
+            <option value="caipira">Caipira</option>
+            <option value="paulistano">Paulistano</option>
+            <option value="sulista">Sulista</option>
+            <option value="florianopolitano">Florianopolitano</option>
+            <option value="gaucho">Gaúcho</option>
+            <option value="serra-amazonica">Serra Amazônica</option>
+            <option value="capixaba">Capixaba</option>
+            <option value="maranhense">Maranhense</option>
+            <option value="pernambucana">Pernambucana</option>
+        </select>
+        <input type="text" id="searchInput" placeholder="Digite uma palavra">
+        <button onclick="search()">Pesquisar</button>
+        <div id="definition"></div>
+        <div id="wordList">
+            <strong>Palavras disponíveis:</strong>
+            <ul id="wordListItems"></ul>
+        </div>
+    </div>
+
+    <!-- Modal para exibir definições -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="dados.js"></script>
+</body>
+</html>
