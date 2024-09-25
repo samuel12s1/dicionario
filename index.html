@@ -1,10 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dicionário de Gírias</title>
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilo geral */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #490000;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ddddd3;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #565a5f;
+        }
+        select,
+        input[type="text"],
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #838383;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            background-color: #182b30;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2e30ac;
+        }
+        #definition {
+            margin-top: 20px;
+        }
+        #wordList {
+            border: 1px solid #d8d8d8;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        #wordList ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        #wordList ul li {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        #wordList ul li:hover {
+            transform: scale(1.05);
+        }
+        #wordList ul li:active {
+            transform: scale(0.95);
+        }
+        /* Cores específicas para cada dialeto */
+        .nortista-color { background-color: #e57373; color: #fff; }
+        .costa-norte-color { background-color: #81c784; color: #fff; }
+        .nordestino-color { background-color: #ffb74d; color: #fff; }
+        .recifense-color { background-color: #64b5f6; color: #fff; }
+        .baiano-color { background-color: #fff176; color: #fff; }
+        .sertanejo-color { background-color: #a1887f; color: #fff; }
+        .brasiliense-color { background-color: #90a4ae; color: #fff; }
+        .mineiro-color { background-color: #4db6ac; color: #fff; }
+        .fluminense-color { background-color: #7986cb; color: #fff; }
+        .carioca-color { background-color: #ff8a65; color: #fff; }
+        .caipira-color { background-color: #dce775; color: #fff; }
+        .paulistano-color { background-color: #ba68c8; color: #fff; }
+        .sulista-color { background-color: #f06292; color: #fff; }
+        .florianopolitano-color { background-color: #ce93d8; color: #fff; }
+        .gaucho-color { background-color: #e57373; color: #fff; }
+        .serra-amazonica-color { background-color: #4fc3f7; color: #fff; }
+        .capixaba-color { background-color: #9e9d24; color: #fff; }
+        .maranhense-color { background-color: #ffcc80; color: #fff; }
+        .pernambucana-color { background-color: #26c6da; color: #fff; }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        @media screen and (max-width: 600px) {
+            .container { padding: 10px; }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -48,6 +172,266 @@
         </div>
     </div>
 
-    <script src="dados.js"></script>
+    <script>
+        const griaPorEstado = {
+            "nortista": { "caboco": "Pessoa que vive na zona rural, sertanejo, camponês.",
+             "Moleque doido": "Pessoa que vive aprontando.",
+"Moscô de bubuia": "Quando alguém é pego desprevenido enquanto está relaxando.",
+"Ixi, égua!": "Expressão de espanto ou admiração.",
+"Borogodó de brocado": "Pessoa que faz comida ou que adora comer.",
+"Pai d’égua no casão": "Pessoa boa que acaba indo para o presídio.",
+"Cunha de gaiato": "Menina que é cheia de brincadeiras.",
+"Curumim de asa dura": "Menino que sonha em ser piloto de avião.",
+"Tubão na merenda": "Um soco na cara, mas também uma refeição deliciosa!",
+"Levou farelo no borogodó": "Alguém que morreu fazendo algo que amava.",
+"Égua de largura com moscô": "Pessoa com muita sorte que foi pega em flagrante.",
+"Moleque doido e carapanã": "Criança que vive sendo picada por mosquitos.",
+"Ficar de bubuia no arraial": "Relaxar enquanto aproveita as comidas típicas da festa.",
+"Gaiato e morena bela": "Pessoa brincalhona acompanhada por uma moça.",
+"Ixi, levei um tubão!": "Exclamação após receber um soco inesperado.",
+"Borogodó com égua": "Especialista em algo incrível ou surpreendente.",
+"Cunha do moleque doido": "Menina que se envolve nas travessuras do menino.",
+"Curumim levando farelo": "Pessoa que acaba se metendo em problemas sérios.",
+"Asa dura no casão": "Avião indo para o presídio.",
+"Merenda de gaiato": "Lanche divertido ou inusitado, cheio de surpresas.",
+"Égua de largura na broca": "Uma pessoa com muita sorte."},
+            "costa-norte": { "bixiga": "Refere-se a algo inflado ou inchado." },
+            "nordestino": { "Abestado/Abestalhado": "Forma de chamar alguém de bobo, trouxa, tonto.",
+"Amancebado": "Viver junto sem ser casado oficialmente, amigado.",
+"Ai dento": "Pode ser usada do mesmo modo que o 'sai fora' ou 'vá se danar'. É usada em quase vários estados do Nordeste.",
+"Aperreado": "É o mesmo que estar aborrecido, chateado.",
+"Apurrinhado": "O mesmo que dizer que está com raiva, muito irritado.",
+"A pulso (ou apuço)": "Algo que tem que fazer contra sua vontade, a força, obrigado.",
+"Armaria": "Forma de dizer Ave Maria. É usado para expressar espanto ou surpresa.",
+"Arretado": "Pode ser usado para se referir algo que considera muito bom, legal ou bonito. Também serve para indicar que uma pessoa é corajosa, valente.",
+"Arengar": "Significa brigar, arrumar confusão. A pessoa que briga muito é chamada de arengueiro.",
+"Arribar": "Ir embora, sair de algum lugar. Também pode ser usada como sinônimo de levantar ou subir.",
+"Arriégua (ou arre-égua)": "É como se fosse o 'uai' mineiro. Normalmente usado para expressar surpresa ou espanto, tanto para coisas boas quanto ruins.",
+"Arrudiar": "Dar a volta, rodear algo ou alguém.",
+"Arrochar": "Apertar algo com força.",
+"Avexada": "É o mesmo que uma pessoa apressada, impaciente.",
+"Baixa da égua": "Lugar distante. O termo é usado quando a pessoa está nervosa e quer mandar a outra para longe.",
+"Bagaceira": "Festa animada, farra, bagunça.",
+"Basculho": "Significa resto, sobra, algo que se vai jogar fora. Normalmente, é usada para ofender outra pessoa, a chamando de basculho.",
+"Bater fofo": "Significa vacilar com alguém, dar uma mancada, não cumprir com algo que prometeu.",
+"Barreado": "Confuso, perdido, sem saber direito o que fazer.",
+"Bestar": "Ficar à toa, de bobeira, sem fazer nada.",
+"Batoré": "É o mesmo que homem pequeno e feio.",
+"Botar boneco": "Perturbar os outros. Também pode ser sinônimo de fazer brincadeiras com os amigos.",
+"Bexiguento": "Alguém que não vale nada, que não presta.",
+"Bichinho": "Forma carinhosa de chamar alguém.",
+"Cabrunco": "Modo errado de se falar uma infecção chamada carbúnculo. Usada como ofensa e sinônimo de algo ou alguém ruim. Também é usada na Bahia para se referir a uma pessoa feia.",
+"Brechar": "É o mesmo que espionar, dar aquela espiada sem ninguém ver.",
+"Cabra": "É usada como sinônimo para pessoa, sujeito, indivíduo, homem, etc.",
+"Cacunda": "Sinônimo de ombro, parte de cima das costas.",
+"Caçar conversa": "É o mesmo que arrumar briga, provocar, procurar confusão.",
+"Cambito": "É o mesmo que perna fina.",
+"Carão": "É possível dar ou levar um carão, que significa uma bronca, uma chamada de atenção.",
+"Cangote": "O mesmo que pescoço.",
+"Carecer": "Utilizada como sinônimo de precisar, necessitar.",
+"Da bexiga": "Usada quando se quer dar intensidade ao que é falado, quando muito ou demais não são o suficiente.",
+"Danou-se": "Expressão de espanto, susto ou até mesmo entusiasmo. Também pode ser usada para dizer que alguém se deu mal, se machucou.",
+"Cheiro": "Forma carinhosa de mandar um beijo para alguém.",},
+            "recifense": { "mangue": "Uma referência aos bairros alagados da cidade." },
+            "baiano": { "oxente": "Expressão de espanto ou surpresa.",
+                "É barril": "Dificuldade, complicado, problema, perigoso ou admirável, muito bom, o melhor.",
+                "Baratino": "Enrolação.",
+                "Brocar": "Fazer algo muito bem, lacrar, obter sucesso, vencer.",
+                "Se pique": "Ir embora logo.",
+                "Não comer reggae": "Não se rebaixar perante ninguém, não cair em conversa fiada, não acreditar em uma história, não ser bobo.",
+                "Lagar o doce": "Falar a verdade cara a cara, com coragem.",
+                "Pegar a visão": "Ficar atento.",
+                "Namoral": "Ficar tranquilo, relaxado ou por favor.",
+                "Ser boca de 09": "Muito bom, muito eficiente.",
+                "Pegar ar": "Ficar muito irritado.",
+                "Crocodilagem": "Golpe, enganação.",
+                "Crocodilo": "Bandido, traiçoeiro, mentiroso, enganador.",
+                "Tá na cocó": "Quando alguém está armando uma cilada para outra pessoa.",
+                "É bala": "Muito bom.",
+             },
+            "sertanejo": { "cabra da peste": "Pessoa corajosa e destemida." },
+            "brasiliense": { "top": "Algo que é muito bom ou legal." },
+            "mineiro": { "uai": "Expressão de espanto ou surpresa." },
+            "fluminense": { "maneiro": "Algo legal, bacana." },
+            "carioca": {
+                "sacanagem": "Algo engraçado, piada.",
+                "Mandar bala": "Agir rapidamente, sem hesitar.",
+                "Bafafá": "Confusão, tumulto.",
+                "Malandro": "Pessoa esperta, astuta.",
+                "Mermão": "Forma informal de se referir a alguém, como 'cara' ou 'brother'",
+                "Treta": "Confusão, briga",
+                "Dar mole": "Agir de forma descuidada, desatenta",
+                "Firmeza": "Algo que está certo, correto",
+                "Pagar mico": "Passar por uma situação constrangedora",
+                "Pôr na roda": "Expor alguém a situações embaraçosas",
+                "Ficar de boa": "Relaxar, ficar tranquilo",
+                "Dar um rolé": "Dar uma volta, passear",
+                "Cascata": "História inventada, mentira",
+                "Estar na pindaíba": "Estar sem dinheiro",
+                "Vazar": "Ir embora rapidamente",
+                "Sem noção": "Alguém que não percebe o que acontece ao seu redor",
+                "Mó galera": "Muitas pessoas, grande grupo",
+                "Mandar um zap": "Enviar uma mensagem pelo WhatsApp",
+                "Perdeu playboy": "Expressão usada em situações de roubo ou perda",
+                "Esquentar a cabeça": "Se preocupar excessivamente com algo"
+            },
+            "caipira": { "trelelê": "Confusão, desentendimento." },
+            "paulistano": { "zica": "Azar, má sorte." },
+            "sulista": { "guri": "Menino, garoto." },
+            "florianopolitano": { "manezinho": "Pessoa nativa de Florianópolis." },
+            "gaucho": { "barbaridade": "Expressão de espanto ou surpresa.",
+                "Pandorga": "Brinquedo também conhecido como pipa ou papagaio.",
+"Boca aberta": "Uma pessoa sonsa, lerda ou burra.",
+"Pozolha": "É uma abreviação da expressão 'pois, olha…'.",
+"Prenda": "Como os gaúchos chamam suas mulheres.",
+"Chinelagem": "Algo ruim, fraco, bagunçado ou desanimado. Uma pessoa chata também pode ser chamada de chinelo.",
+"Esgualepado": "É o mesmo que machucado, ferido.",
+"Guri / Guria": "Gíria que pode substituir as palavras 'menino' e 'menina' em diferentes situações.",
+"Vareio": "O ato de vencer com grande vantagem. Diz-se que o jogo foi um vareio.",
+"Abichornado": "É o mesmo que triste, desanimado ou amuado.",
+"A la minuta": "Significa prato feito, um prato de comida já montado.",
+"Balaqueiro": "Expressão usada para se referir a uma conversa provavelmente cheia de mentiras, a conhecida 'conversa-mole' ou 'papo-furado'.",
+"Cusco": "Uma gíria para se referir a 'cachorro'.",
+"Atucanado": "O mesmo que estar preocupado, com a cabeça cheia de problemas.",
+"Brigadiano": "Soldado da Brigada Militar.",
+"Chinelear": "Ato de humilhar alguém.",
+"Trovar": "O mesmo que falar muito e contando vantagem.",
+"Alcançar": "Por mais que seja uma palavra comum na língua portuguesa, o gaúcho usa de uma forma diferente. 'Alcançar', para os gaúchos, é o mesmo que pegar algo próximo.",
+"Prende o grito": "O mesmo que 'pode contar comigo'.",
+"Fatiota": "Usado para falar que alguém está bem vestido, principalmente quando a pessoa está de paletó ou terno.",
+"Olhando de revesgueio": "Significa olhar de soslaio, de lado para alguém, como se estivesse desconfiado.",
+"Fandango": "Uma festa, qualquer tipo de baile ou divertimento.",
+"Larguemo na pernada": "Uma expressão que significa 'corremos' ou 'saímos correndo'.",
+"Talagaço": "Uma gíria que se refere a tomar tudo de uma vez só, em um gole.",
+             },
+            "serra-amazonica": { "caeté": "Espécie de palmeira típica da região amazônica." },
+            "capixaba": { "Pisero": "Pessoa que está sempre em movimento, ativa, agitada.",
+"Firmeza": "Concordância, algo que está certo ou combinado.",
+"Chave": "Amigo próximo, companheiro.",
+"Dar um tapa": "Fumar maconha.",
+"Mané": "Pessoa boba, ingênua, desatenta.",
+"Breckar": "Fofocar, espalhar boatos.",
+"Bagulho": "Coisa, objeto, algo concreto ou abstrato.",
+"Arrochar": "Apertar, pressionar, dificultar algo para alguém.",
+"Mó daora": "Muito legal, incrível.",
+"Tretar": "Entrar em discussão, brigar, causar confusão.",
+                "paneleiro": "Pessoa que participa de panelaços.",
+                "vix": "Expressão de espanto ou surpresa, típica do Espírito Santo."
+            },
+            "maranhense": {
+                "Mané": "Pessoa boba, ingênua ou desajeitada.", 
+                "Oxente": "Expressão de surpresa, espanto ou incredulidade, típica do nordeste.",
+"Firmeza": "Concordância, concordar com algo ou demonstrar apoio.",
+"Arrochar": "Intensificar, apertar ou reforçar algo.",
+"Tretar": "Entrar em conflito, brigar ou discutir.",
+"Chave": "Pessoa confiável, parceiro ou amigo.",
+"Bagulho": "Coisa, objeto ou situação.",
+"Pisero": "Pessoa ou coisa de baixa qualidade, ruim.",
+"Marcar um fute": "Agendar ou combinar uma partida de futebol.",
+            },
+            "pernambucana": {"Tchê": "Interjeição usada para chamar alguém, expressar surpresa ou enfatizar uma ideia.",
+"Bah": "Interjeição usada para demonstrar surpresa, concordância ou indignação.",
+"Guria/guri": "Menina/menino, respectivamente.",
+"Tchê loco": "Expressão de espanto, surpresa.",
+"Vamo": "Contração da expressão 'vamos', utilizada para indicar ação no sentido de fazer algo.",
+"Chê": "Forma informal de se referir a alguém.",
+"Piazada": "Grupo de rapazes, meninada.",
+"Que barbaridade": "Expressão de espanto, indignação ou surpresa.",
+"Ô, louco!": "Expressão de surpresa ou incredulidade.",
+"Trilegal": "Muito legal, ótimo.",
+                "massa": "Algo legal ou bom.",
+            }
+        };
+
+        const colorClassMap = {
+            "nortista": "nortista-color",
+            "costa-norte": "costa-norte-color",
+            "nordestino": "nordestino-color",
+            "recifense": "recifense-color",
+            "baiano": "baiano-color",
+            "sertanejo": "sertanejo-color",
+            "brasiliense": "brasiliense-color",
+            "mineiro": "mineiro-color",
+            "fluminense": "fluminense-color",
+            "carioca": "carioca-color",
+            "caipira": "caipira-color",
+            "paulistano": "paulistano-color",
+            "sulista": "sulista-color",
+            "florianopolitano": "florianopolitano-color",
+            "gaucho": "gaucho-color",
+            "serra-amazonica": "serra-amazonica-color",
+            "capixaba": "capixaba-color",
+            "maranhense": "maranhense-color",
+            "pernambucana": "pernambucana-color"
+        };
+
+        function updateWordList() {
+            const wordType = document.getElementById("wordType").value;
+            const wordListOutput = document.getElementById("wordListItems");
+            wordListOutput.innerHTML = ""; // Limpa a lista atual
+
+            for (const region in griaPorEstado) {
+                if (wordType === "all" || wordType === region) {
+                    for (const word in griaPorEstado[region]) {
+                        const listItem = document.createElement("li");
+                        listItem.textContent = word;
+                        listItem.classList.add(colorClassMap[region]);
+                        listItem.onclick = () => showModal(word, griaPorEstado[region][word]); // Exibir modal ao clicar
+                        wordListOutput.appendChild(listItem);
+                    }
+                }
+            }
+        }
+
+        const searchInput = document.getElementById("searchInput");
+
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            const wordType = document.getElementById("wordType").value; // Pega a seleção atual
+            const filteredWords = [];
+
+            for (const region in griaPorEstado) {
+                if (wordType === "all" || wordType === region) {
+                    for (const word in griaPorEstado[region]) {
+                        if (word.toLowerCase().includes(searchTerm)) {
+                            filteredWords.push({ word, region });
+                        }
+                    }
+                }
+            }
+
+            const wordListOutput = document.getElementById("wordListItems");
+            wordListOutput.innerHTML = ""; // Limpa a lista atual
+
+            filteredWords.forEach(item => {
+                const listItem = document.createElement("li");
+                listItem.textContent = item.word;
+                listItem.classList.add(colorClassMap[item.region]);
+                listItem.onclick = () => showModal(item.word, griaPorEstado[item.region][item.word]); // Exibir modal ao clicar
+                wordListOutput.appendChild(listItem);
+            });
+        });
+
+        function showModal(word, definition) {
+            const modal = document.getElementById('myModal');
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = `<strong>${word}:</strong> ${definition}`;
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('myModal');
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('myModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        };
+
+        updateWordList();
+    </script>
 </body>
 </html>
